@@ -12,7 +12,7 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 # Load the JSON file
-with open("C:\\Users\\Admin\\Sample Question Answers.json", 'r') as file:
+with open("D:\\Projects\\Corpus-Chat-bot\\Jessup Cellars Corpus.json", 'r') as file:
     corpus = json.load(file)
 
 # Preprocess the questions
@@ -24,7 +24,7 @@ def preprocess(text):
 
 # Preprocess the entire corpus
 for entry in corpus:
-    entry['processed_question'] = preprocess(entry['question'])
+    entry['processed_question'] = preprocess(entry['Question'])
 
 # Vectorize the questions
 questions = [" ".join(entry['processed_question']) for entry in corpus]
@@ -37,13 +37,12 @@ def retrieve_answer(user_query):
     similarities = cosine_similarity(query_vector, question_vectors).flatten()
     most_similar_index = similarities.argmax()
     if similarities[most_similar_index] > 0.1:  # Set a threshold to determine relevance
-        return corpus[most_similar_index]['answer']
+        return corpus[most_similar_index]['Answer']
     else:
         return "Please contact the business directly for more information."
 
 # Local dictionary to store sessions
 session_store = {}
-
 def store_session(session_id, user_input, response):
     if session_id not in session_store:
         session_store[session_id] = []
@@ -96,9 +95,5 @@ if user_input:
     response = retrieve_answer(user_input)  # Backend logic to generate response
     st.write(response)
     store_session(session_id, user_input, response)
-    st.write("Conversation History:")
-    history = get_session(session_id)
-    for query, resp in history:
-        st.write(f"Q: {query}")
-        st.write(f"A: {resp}")
+    
 st.image("D:\\Projects\\wine glass.png")
