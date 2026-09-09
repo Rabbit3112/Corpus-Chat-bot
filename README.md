@@ -14,10 +14,6 @@ git clone <https://github.com/Rabbit3112/Corpus-Chat-bot.git>
 
 Now open the cloned directory and open your VS-Code or any other tool to run the code
 
-
-
-
-
 step 2:  Install Dependencies:
 
 Ensure you have Python 3.7+ installed. 
