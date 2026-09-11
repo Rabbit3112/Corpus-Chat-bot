@@ -21,6 +21,7 @@ Ensure you have Python 3.7+ installed.
 Install the required libraries using pip by running 'requirements.txt' :
 
     Json 
+    
     Nltk
     Sklearn 
     Streamlit 
